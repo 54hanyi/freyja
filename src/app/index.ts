@@ -8,9 +8,16 @@ import * as Exception from '@/app/exception';
 
 const app = express();
 
+// CORS配置选项
+const corsOptions = {
+  origin: 'http://localhost:5173', // 允许的来源
+  optionsSuccessStatus: 200,
+  credentials: true // 允许携带凭证
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/public', express.static('public'));
@@ -23,5 +30,5 @@ app.use(Exception.catchCustomError);
 Exception.catchGlobalError();
 
 app.listen(process.env.PORT, () => {
-    console.log(`listening on http://localhost:${process.env.PORT}`);
+  console.log(`listening on http://localhost:${process.env.PORT}`);
 });
