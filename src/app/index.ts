@@ -8,9 +8,15 @@ import * as Exception from '@/app/exception';
 
 const app = express();
 
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true,  // 允许发送凭证 (如cookies)
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 app.use(morgan('dev'));
 
 app.use('/public', express.static('public'));
