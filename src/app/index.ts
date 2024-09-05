@@ -8,13 +8,13 @@ import * as Exception from '@/app/exception';
 
 const app = express();
 
-const corsOptions = {
-  origin: ['http://localhost:5173', 'https://freyja-yr52.onrender.com'],
-  credentials: true,  
-};
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
 
-
-app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
