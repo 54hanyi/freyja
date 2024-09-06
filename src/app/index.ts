@@ -8,10 +8,13 @@ import * as Exception from '@/app/exception';
 
 const app = express();
 
+const VALID_ORIGIN = 'http://localhost:5173';
+
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', VALID_ORIGIN);
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // 新增這行來允許憑證
   next();
 });
 
