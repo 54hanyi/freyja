@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import morgan from 'morgan';
 import 'dotenv/config';
 import '@/app/connection';
@@ -9,13 +10,12 @@ const app = express();
 
 const VALID_ORIGIN = 'http://localhost:5173';
 
-app.use((_, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', VALID_ORIGIN);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true'); // 允許憑證
-  next();
-});
+app.use(cors({
+  origin: VALID_ORIGIN,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  credentials: true // 確保支持憑證
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
