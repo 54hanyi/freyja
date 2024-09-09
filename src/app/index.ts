@@ -17,6 +17,16 @@ app.use(cors({
   credentials: true // 確保支持憑證
 }));
 
+// 處理 OPTIONS 預檢請求
+app.options('/api/v1/rooms', (_, res) => {
+  res.header('Access-Control-Allow-Origin', VALID_ORIGIN);
+  res.header('Access-Control-Allow-Methods', 'POST, PATCH, OPTIONS'); // 允許的方法
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // 允許的 headers
+  res.header('Access-Control-Allow-Credentials', 'true'); // 允許攜帶憑證（如 Cookies）
+  res.header('Access-Control-Max-Age', '86400'); // 快取 24 小時 (秒)
+  res.sendStatus(204); // 返回 204 表示成功
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
