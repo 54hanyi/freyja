@@ -11,10 +11,6 @@ const PORT = process.env.PORT || 3000; // 如果沒有設定 PORT，則默認使
 
 const VALID_ORIGIN = 'http://localhost:5173';
 
-app.listen(PORT, () => {
-    console.log(`listening on http://localhost:${PORT}`);
-});
-
 
 app.use(cors({
   origin: VALID_ORIGIN,
@@ -38,5 +34,5 @@ app.use(Exception.catchCustomError);
 Exception.catchGlobalError();
 
 app.listen(process.env.PORT, () => {
-    console.log(`listening on http://localhost:${process.env.PORT}`);
+    console.log(`listening on http://localhost:${PORT}`);
 });
