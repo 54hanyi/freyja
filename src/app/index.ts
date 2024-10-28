@@ -7,8 +7,14 @@ import Routes from '@/routes';
 import * as Exception from '@/app/exception';
 
 const app = express();
+const PORT = process.env.PORT || 3000; // 如果沒有設定 PORT，則默認使用 3000
 
 const VALID_ORIGIN = 'http://localhost:5173';
+
+app.listen(PORT, () => {
+    console.log(`listening on http://localhost:${PORT}`);
+});
+
 
 app.use(cors({
   origin: VALID_ORIGIN,
