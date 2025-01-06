@@ -9,11 +9,11 @@ import * as Exception from '@/app/exception';
 const app = express();
 const PORT = process.env.PORT || 3000; // 如果沒有設定 PORT，則默認使用 3000
 
-const VALID_ORIGINS = ['http://localhost:5173', 'https://54hanyi.github.io'];
+// const VALID_ORIGINS = ['http://localhost:5173', 'https://54hanyi.github.io'];
 
 
 app.use(cors({
-  origin: VALID_ORIGINS,
+  origin: ['http://localhost:5173', 'https://54hanyi.github.io'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   credentials: true // 確保支持憑證
