@@ -20,5 +20,10 @@
             "@develop/*": ["develop/*"]
         }
     },
+    "ts-node": {
+        "compilerOptions": {
+        "module": "ESNext"
+        }
+    },
     "include": ["src/**/*.ts", "src/**/*.d.ts"]
 }

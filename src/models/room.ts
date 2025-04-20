@@ -1,6 +1,7 @@
 import { Schema, model, type Document } from 'mongoose';
 import validator from 'validator';
-import itemSchema, { IItem } from './schema/item';
+import itemSchema, { IItem } from './schema/item.js';
+
 
 export interface IRoom extends Document {
     name: string;
